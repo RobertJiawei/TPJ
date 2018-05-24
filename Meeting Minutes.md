@@ -8,4 +8,7 @@ May 5, 2018:
     
   Motion sensor:
     https://maker.pro/raspberry-pi/tutorial/how-to-interface-a-pir-motion-sensor-with-raspberry-pi-gpio
+    
+  Camera:
+    https://projects.raspberrypi.org/en/projects/getting-started-with-picamera
   Prepare next meeting
