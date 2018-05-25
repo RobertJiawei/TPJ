@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+'''
+Setup the Circuit:
+1. Adjust appropriate Sensitivity and Duration of the sensor
+2. Connect the pins: GND-Out-Vcc
+3. Research for correct Vcc: 5 or 3.3V
+4. Add a current-limiting R to the Out-sensorOut_pin
+'''
 
 import RPi.GPIO as GPIO
 import time
@@ -11,14 +18,10 @@ times = 0
 try:
     while True:
         time.sleep(2)
-        print(GPIO.input(senserOut_pin))
-        """if GPIO.input(senserOut_pin):
+        if GPIO.input(senserOut_pin):
             times+=1
-            print("motion No.%s" % (times))"""
+            print("motion No.%s" % (times))
 except KeyboardInterrupt:
     pass
 except:
     GPIO.cleanup()
-
-"""while True:
-    print(GPIO.input(senserOut_pin))"""
