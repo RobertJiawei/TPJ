@@ -16,5 +16,5 @@ try:
             print("motion No.%s" % (times))
 except KeyboardInterrupt:
     pass
-finally:
+except:
     GPIO.cleanup()
