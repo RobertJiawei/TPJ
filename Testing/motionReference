@@ -1,0 +1,76 @@
+import RPi.GPIO as GPIO
+import os
+import time
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+GPIO.setup(7, GPIO.OUT)#Light
+GPIO.setup(26, GPIO.IN)#Motion Sensor
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)#Switch
+GPIO.setup(11, GPIO.OUT)#Switch LED
+ 
+t = 150
+x = 0
+ 
+if GPIO.input(7):
+    light_state = True
+else:
+    light_state = False
+ 
+def cls():
+    os.system("clear")
+ 
+def light_toggle():
+ if GPIO.input(7):
+    GPIO.output(7,False)#LIGHT OFF
+    GPIO.output(11,True)#BUTTON LIGHT ON
+    print "Turning Light Off"
+ else:
+    GPIO.output(7,True)#LIGHT ON
+    GPIO.output(11,False)#BUTTON LIGHT OFF
+    print "Turning Light On"
+ 
+n = 0
+while(n != 1):  #Loops infinitely
+ 
+    if (GPIO.input(18)==0):
+        light_toggle()
+        light_state = not light_state
+        print "Light switching on/off"
+        time.sleep(1)
+        x = 0
+       
+ 
+    elif (GPIO.input(18)==1):
+     print("Waiting for button press.")
+     x = 0
+     cls()
+   
+     if (GPIO.input(7)==0):
+      lighton = False
+     elif (GPIO.input(7)==1):
+      lighton = True
+       
+    print ("User Defined Light Status: %r" %light_state)   
+    print ("Physical Light Status: %ls" %lighton)
+ 
+    if (light_state == True and lighton == False):
+     print("\nLight has been automatically disabled to conserve energy.\n")
+   
+ 
+    while (GPIO.input(7)==1 and GPIO.input(26)==0 and GPIO.input(18)==1 and x != t and light_state == True): #Loops while Light is on, no movement is detected and switch isn't pressed
+     shutdown_time = t - x
+     mins = shutdown_time / 60
+     secs = shutdown_time % 60
+     if x == int(x):
+      print ("Turning light off in %d secs. (%d Minute(s) and %d Second(s).)" %(shutdown_time, mins, secs))
+     time.sleep(0.25)
+     x = x + 0.25
+     if (x == t):
+      light_toggle()
+      print ("Light turned off due to inactivity.")
+          manual_toggle = False
+ 
+    while (GPIO.input(7)==0 and GPIO.input(26)==1 and light_state == True):
+     light_toggle()
+     print("Movement detected, re-enabling lighting.")
+     time.sleep(5)
