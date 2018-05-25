@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(motionFeedback_pinOut, GPIO.IN)      # GPIO 2 to be an input
 
 times = 0
-"""try:
+try:
     while True:
         time.sleep(2)
         if GPIO.input(motionFeedback_pinOut):
@@ -17,7 +17,7 @@ times = 0
 except KeyboardInterrupt:
     pass
 except:
-    GPIO.cleanup()"""
+    GPIO.cleanup()
 
-while True:
-    print(GPIO.input(motionFeedback_pinOut))
+"""while True:
+    print(GPIO.input(motionFeedback_pinOut))"""
