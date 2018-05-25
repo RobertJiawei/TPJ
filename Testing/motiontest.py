@@ -11,9 +11,10 @@ times = 0
 try:
     while True:
         time.sleep(2)
-        if GPIO.input(motionFeedback_pinOut):
+        print(GPIO.input(motionFeedback_pinOut))
+        """if GPIO.input(motionFeedback_pinOut):
             times+=1
-            print("motion No.%s" % (times))
+            print("motion No.%s" % (times))"""
 except KeyboardInterrupt:
     pass
 except:
