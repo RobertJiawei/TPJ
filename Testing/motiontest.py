@@ -3,7 +3,7 @@
 import RPi.GPIO as GPIO
 import time
 
-motionFeedback_pinOut = 3                       # GPIO 2
+motionFeedback_pinOut = 11                       # GPIO 2
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(motionFeedback_pinOut, GPIO.IN)      # GPIO 2 to be an input
 
