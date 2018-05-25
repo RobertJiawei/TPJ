@@ -17,7 +17,7 @@ GPIO.setup(senserOut_pin, GPIO.IN)      # GPIO 2 to be an input
 times = 0
 try:
     while True:
-        time.sleep(2)
+        time.sleep(0.2)
         if GPIO.input(senserOut_pin):
             times+=1
             print("motion No.%s" % (times))
