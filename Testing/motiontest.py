@@ -3,16 +3,16 @@
 import RPi.GPIO as GPIO
 import time
 
-motionFeedback_pinOut = 11                       # GPIO 2
+senserOut_pin = 11                       # GPIO 2
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(motionFeedback_pinOut, GPIO.IN)      # GPIO 2 to be an input
+GPIO.setup(senserOut_pin, GPIO.IN)      # GPIO 2 to be an input
 
 times = 0
 try:
     while True:
         time.sleep(2)
-        print(GPIO.input(motionFeedback_pinOut))
-        """if GPIO.input(motionFeedback_pinOut):
+        print(GPIO.input(senserOut_pin))
+        """if GPIO.input(senserOut_pin):
             times+=1
             print("motion No.%s" % (times))"""
 except KeyboardInterrupt:
@@ -21,4 +21,4 @@ except:
     GPIO.cleanup()
 
 """while True:
-    print(GPIO.input(motionFeedback_pinOut))"""
+    print(GPIO.input(senserOut_pin))"""
