@@ -20,12 +20,13 @@ def rightturn():
 	time.sleep(1) # sleep 1 second
 
 try:
-        while True:
-		turn = raw_input("left or right")
+	while True:
+		turn = input("left or right")
 		if(turn == "left"):
 			leftturn()
 		else:
 			rightturn()
+
 except KeyboardInterrupt:
 	p.stop()
-        GPIO.cleanup()
+	GPIO.cleanup()
