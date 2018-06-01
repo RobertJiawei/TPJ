@@ -17,9 +17,9 @@ tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
 while True:
-        print 'Waiting for connection'
+        print('Waiting for connection')
         tcpCliSock,addr = tcpSerSock.accept()
-        print '...connected from :', addr
+        print('...connected from :', addr)
         try:
                 while True:
                         data = ''
@@ -28,10 +28,10 @@ while True:
                                 break
                         if data == ctrCmd[0]:
                                 RoomLight.LED1(0)
-                                print 'LED1 Off'
+                                print('LED1 Off')
                         if data == ctrCmd[1]:
                                 RoomLight.LED1(1)
-                                print 'LED1 On'
+                                print('LED1 On')
         except KeyboardInterrupt:
                 GPIO.cleanup()
 tcpSerSock.close();
