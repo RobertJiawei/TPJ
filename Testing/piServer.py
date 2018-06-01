@@ -8,7 +8,7 @@ RoomLight.setup()
 ctrCmd = ['1false','1true','2false','2true','3false','3true','wfalse','wtrue']
 
 HOST = ''
-PORT = 1
+PORT = 21567
 BUFSIZE = 1024
 ADDR = (HOST,PORT)
 
