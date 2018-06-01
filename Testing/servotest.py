@@ -13,7 +13,7 @@ try:
         while True:
 		p.ChangeDutyCycle(7.5)  # turn towards 90 degree
 		time.sleep(1) # sleep 1 second
-		p.ChangeDutyCycle(7.5) # turn towards 180 degree
+		p.ChangeDutyCycle(0) # turn towards 180 degree
         time.sleep(1) # sleep 1 second 
 except KeyboardInterrupt:
 	p.stop()
