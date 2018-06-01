@@ -16,7 +16,6 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
-'''
 while True:
         print('Waiting for connection')
         tcpCliSock,addr = tcpSerSock.accept()
@@ -35,5 +34,5 @@ while True:
                                 print('LED1 On')
         except KeyboardInterrupt:
                 GPIO.cleanup()
+                
 tcpSerSock.close();
-'''
