@@ -16,7 +16,7 @@ try:
 		p.ChangeDutyCycle(2.5)  # turn towards 0 degree
 		time.sleep(1) # sleep 1 second
 		p.ChangeDutyCycle(12.5) # turn towards 180 degree
-        time.sleep(1) # sleep 1 second 
+                time.sleep(1) # sleep 1 second 
 except KeyboardInterrupt:
 	p.stop()
         GPIO.cleanup()
