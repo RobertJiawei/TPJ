@@ -1,7 +1,7 @@
 from time import ctime
 import RPi.GPIO as GPIO
 
-def setUp():
+def setup():
 	GPIO.setmode(GPIO.BOARD)
 	GPIO.setup(3,GPIO.OUT)
 	        
