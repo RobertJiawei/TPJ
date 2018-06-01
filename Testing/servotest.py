@@ -11,12 +11,10 @@ p.start(2.5)
 
 try:
         while True:
-		p.ChangeDutyCycle(7.5)  # turn towards 90 degree
-		print("90")
-		time.sleep(1) # sleep 1 second
-		p.ChangeDutyCycle(2.5)  # turn towards 0 degree
+		p.ChangeDutyCycle(2.5)  # turn towards 90 degree
 		print("0")
 		time.sleep(1) # sleep 1 second
+		
 		p.ChangeDutyCycle(12.5) # turn towards 180 degree
 		print("180")
                 time.sleep(1) # sleep 1 second 
