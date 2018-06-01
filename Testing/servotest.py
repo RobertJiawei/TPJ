@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+control = [5,6,7,8,9,10]
+
 servo = 22
 
 GPIO.setmode(GPIO.BOARD)
@@ -23,10 +25,9 @@ p.start(2.5)# starting duty cycle ( it set the servo to 0 degree )
 
 try:
        while True:
-           for x in range(11):
-             p.ChangeDutyCycle(1.5)
+           for x in range(5):
+             p.ChangeDutyCycle(control[x])
              time.sleep(1)
-             p.ChangeDutyCycle(0)
              print x
            
            """for x in range(9,0,-1):
