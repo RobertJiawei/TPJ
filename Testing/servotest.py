@@ -27,12 +27,12 @@ try:
        while True:
            for x in range(11):
              p.ChangeDutyCycle(control[x])
-             time.sleep(0.03)
+             time.sleep(0.1)
              print x
            
            for x in range(9,0,-1):
              p.ChangeDutyCycle(control[x])
-             time.sleep(0.03)
+             time.sleep(0.1)
              print x
            
 except KeyboardInterrupt:
