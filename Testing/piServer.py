@@ -3,7 +3,7 @@ from socket import *
 from time import ctime
 import RPi.GPIO as GPIO
 
-Servomotor.setup()
+RoomLight.setup()
 
 ctrCmd = ['1false','1true','2false','2true','3false','3true','wfalse','wtrue']
 
