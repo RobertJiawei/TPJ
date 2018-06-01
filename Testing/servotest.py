@@ -27,7 +27,7 @@ try:
        while True:
            for x in range(11):
              p.ChangeDutyCycle(control[x])
-             time.sleep(0.1)
+             time.sleep(1)
              print x
            
            """for x in range(9,0,-1):
