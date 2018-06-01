@@ -26,6 +26,7 @@ try:
            for x in range(11):
              p.ChangeDutyCycle(1.5)
              time.sleep(1)
+             p.ChangeDutyCycle(0)
              print x
            
            """for x in range(9,0,-1):
