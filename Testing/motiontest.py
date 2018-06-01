@@ -6,7 +6,7 @@ led_pin = 3
 senserOut_pin = 11                       
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(ledOut_pin, GPIO.OUT)
+GPIO.setup(led_pin, GPIO.OUT)
 GPIO.setup(senserOut_pin, GPIO.IN)     
 
 try:
