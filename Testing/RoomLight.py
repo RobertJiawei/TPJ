@@ -7,7 +7,4 @@ def setUp():
 	        
 	
 def LED1(state):
-	if state: // True
-		GPIO.output(led_pin, 1)	
-	else:
-		GPIO.output(led_pin, 0)	
+	GPIO.output(led_pin, state)	
