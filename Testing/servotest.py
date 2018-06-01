@@ -21,7 +21,7 @@ def rightturn():
 
 try:
         while True:
-		turn = input("left or right")
+		turn = raw_input("left or right")
 		if(turn == "left"):
 			leftturn()
 		else:
