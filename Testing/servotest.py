@@ -30,10 +30,10 @@ try:
              time.sleep(0.03)
              print x
            
-           for x in range(9,0,-1):
+           """for x in range(9,0,-1):
              p.ChangeDutyCycle(control[x])
              time.sleep(0.03)
-             print x
+             print x"""
            
 except KeyboardInterrupt:
     GPIO.cleanup()
