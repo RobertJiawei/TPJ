@@ -7,8 +7,10 @@ RoomLight.setup()
 
 ctrCmd = ['1false','1true','2false','2true','3false','3true','wfalse','wtrue']
 
+HOST = ''
+PORT = 1
 BUFSIZE = 1024
-ADDR = ("192.168.43.5",1)
+ADDR = (HOST,PORT)
 
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
