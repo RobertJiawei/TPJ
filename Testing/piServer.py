@@ -11,11 +11,11 @@ HOST = ''
 PORT = 1
 BUFSIZE = 1024
 ADDR = (HOST,PORT)
-'''
+
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
-'''
+
 '''
 while True:
         print('Waiting for connection')
