@@ -7,7 +7,7 @@ GPIO.setup(22, GPIO.OUT)
 
 p = GPIO.PWM(22, 50)
 
-p.start(7.5)
+p.start(0)
 
 try:
         while True:
