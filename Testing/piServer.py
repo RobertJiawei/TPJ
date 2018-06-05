@@ -14,7 +14,7 @@ ADDR = (HOST,PORT)
 
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
-tcpSerSock.listen(5)
+tcpSerSock.listen(10)
 
 while True:
         print('Waiting for connection')
@@ -22,9 +22,8 @@ while True:
         print('...connected from :', addr)
         try:
                 while True:
-                        data = ''
                         data = tcpCliSock.recv(BUFSIZE)
-                        print(data)
+                        print(""+data)
                         '''
                         if not data:
                                 break
