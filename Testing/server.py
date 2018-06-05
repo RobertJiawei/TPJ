@@ -1,7 +1,7 @@
 import socket
 import sys
  
-HOST = '192.168.142.160' #this is your localhost
+HOST = '192.168.43.5' #this is your localhost
 PORT = 8888
  
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
