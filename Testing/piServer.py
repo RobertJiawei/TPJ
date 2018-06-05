@@ -27,10 +27,10 @@ while True:
                         if not data:
                                 break
                         if data == ctrCmd[0]:
-                                RoomLight.LED1(0)
+                                #RoomLight.LED1(0)
                                 print('LED1 Off')
                         if data == ctrCmd[1]:
-                                RoomLight.LED1(1)
+                                #RoomLight.LED1(1)
                                 print('LED1 On')
         except KeyboardInterrupt:
                 GPIO.cleanup()
