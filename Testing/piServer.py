@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 
 RoomLight.setup()
 
-ctrCmd = ['1false','1true','2false','2true','3false','3true','wfalse','wtrue']
-
+#ctrCmd = ['1false','1true','2false','2true','3false','3true','wfalse','wtrue']
+ctrCmd = "1"
 HOST = '192.168.43.5'
 PORT = 21565
 BUFSIZE = 1024
@@ -23,7 +23,7 @@ while True:
         try:
                 while True:
                         data = tcpCliSock.recv(BUFSIZE)
-                        print(""+data)
+                        print(data == ctrCmd)
                         '''
                         if not data:
                                 break
