@@ -23,7 +23,7 @@ while True:
         try:
                 while True:
                         data = tcpCliSock.recv(BUFSIZE)
-                        print(str(data, 'utf-8'))
+                        print(data)
                         time.sleep(10)
                         '''
                         if not data:
