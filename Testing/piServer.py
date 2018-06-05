@@ -1,6 +1,6 @@
 import RoomLight
 from socket import *
-from time import ctime
+import time
 import RPi.GPIO as GPIO
 
 RoomLight.setup()
@@ -24,6 +24,7 @@ while True:
                 while True:
                         data = tcpCliSock.recv(BUFSIZE)
                         print(str(data, 'utf-8'))
+                        time.sleep(10)
                         '''
                         if not data:
                                 break
