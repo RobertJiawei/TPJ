@@ -23,7 +23,6 @@ while True:
         try:
                 while True:
                         tcpSerSock = socket(AF_INET, SOCK_STREAM)
-                        tcpSerSock.bind(ADDR)
                         tcpCliSock,addr = tcpSerSock.accept()
                         data = tcpCliSock.recv(BUFSIZE)
                         print(data)
