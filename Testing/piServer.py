@@ -24,7 +24,7 @@ while True:
                 while True:
                         data = tcpCliSock.recv(BUFSIZE)
                         print(data)
-                        time.sleep(10)
+                        time.sleep(1)
                         '''
                         if not data:
                                 break
