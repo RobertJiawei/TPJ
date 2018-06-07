@@ -22,6 +22,10 @@ while True:
         print('...connected from :', addr)
         try:
                 while True:
+                        tcpSerSock = socket(AF_INET, SOCK_STREAM)
+                        tcpSerSock.bind(ADDR)
+                        tcpSerSock.listen(10)
+                        tcpCliSock,addr = tcpSerSock.accept()
                         data = tcpCliSock.recv(BUFSIZE)
                         print(data)
                         time.sleep(1)
