@@ -25,16 +25,16 @@ while True:
                 data = tcpCliSock.recv(BUFSIZE)
                 print(data)
                 time.sleep(1)
-                        '''
-                        if not data:
-                                break
-                        if data == ctrCmd[0]:
-                                RoomLight.LED1(0)
-                                print('LED1 Off')
-                        if data == ctrCmd[1]:
-                                RoomLight.LED1(1)
-                                print('LED1 On')
-                                '''
+                '''
+                if not data:
+                        break
+                if data == ctrCmd[0]:
+                        RoomLight.LED1(0)
+                        print('LED1 Off')
+                if data == ctrCmd[1]:
+                        RoomLight.LED1(1)
+                        print('LED1 On')                        
+                '''
         except KeyboardInterrupt:
                 GPIO.cleanup()
                 
