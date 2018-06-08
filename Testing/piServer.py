@@ -45,7 +45,7 @@ while True:
                 elif cmd[10:-1] == ctrCmd[5]:
                         RoomLight.LED3(0)
                         print("ROOM 3 OFF")
-                elif cmd[10:-1] == ctrCmd[6]:
+                elif cmd[8:-1] == ctrCmd[6]:
                         window.leftturn()
                         print("WINDOW OPENING")
                 elif cmd[10:-1] == ctrCmd[7]:

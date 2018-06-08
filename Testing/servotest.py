@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+p = None
+
 def setup():
 	GPIO.setmode(GPIO.BOARD)
 	GPIO.setup(12, GPIO.OUT)
