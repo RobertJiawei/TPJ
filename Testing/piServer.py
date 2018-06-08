@@ -20,10 +20,12 @@ while True:
         print('Waiting for connection')
         tcpCliSock,addr = tcpSerSock.accept()
         print('...connected from :', addr)
+        RoomLight.LED1(0)
         try:
                 #while True:
                 data = tcpCliSock.recv(BUFSIZE)
                 print(data)
+                RoomLight.LED1(1)
                 if data == ctrCmd[0]:
                         RoomLight.LED1(1)
                         print("ROOM 1 ON!")
