@@ -1,13 +1,11 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
-
-GPIO.setup(12, GPIO.OUT)
-
-p = GPIO.PWM(12, 50)
-
-p.start(2.5)
+def setup():
+	GPIO.setmode(GPIO.BOARD)
+	GPIO.setup(12, GPIO.OUT)
+	p = GPIO.PWM(12, 50)
+	p.start(2.5)
 
 def leftturn():
 	p.ChangeDutyCycle(2.5)  # turn towards 90 degree
@@ -19,14 +17,3 @@ def rightturn():
 	print("right")
 	time.sleep(1) # sleep 1 second
 
-try:
-	while True:
-		turn = input("left or right")
-		if(turn == "left"):
-			leftturn()
-		else:
-			rightturn()
-
-except KeyboardInterrupt:
-	p.stop()
-	GPIO.cleanup()

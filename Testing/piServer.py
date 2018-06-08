@@ -1,11 +1,13 @@
 import RoomLight
+import servotest as window
 from socket import *
 import time
 import RPi.GPIO as GPIO
 
 RoomLight.setup()
 
-ctrCmd = ['room1on','room1off','room2on','room2off','room3on','room3off']
+
+ctrCmd = ['room1on','room1off','room2on','room2off','room3on','room3off', 'windowopen','windowclose']
 
 HOST = '192.168.43.5'
 PORT = 21565
@@ -43,6 +45,12 @@ while True:
                 elif cmd[10:-1] == ctrCmd[5]:
                         RoomLight.LED3(0)
                         print("ROOM 3 OFF")
+                elif cmd[10:-1] == ctrCmd[6]:
+                        window.leftturn()
+                        print("WINDOW OPENING")
+                elif cmd[10:-1] == ctrCmd[7]:
+                        window.rightturn()
+                        print("WINDOW CLOSING")
         except KeyboardInterrupt:
                 GPIO.cleanup()
                 
