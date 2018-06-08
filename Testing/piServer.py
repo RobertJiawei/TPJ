@@ -24,13 +24,13 @@ while True:
                 #while True:
                 data = tcpCliSock.recv(BUFSIZE)
                 print(data[2:])
-                if data[2:] == "room1on":
+                if data[2:] == "b'room1on'":
                         RoomLight.LED1(1)
                         print("ROOM 1 ON!")
-                elif data[2:] == "room1off":
+                elif data[2:] == "b'room1off'":
                         RoomLight.LED1(0)
                         print("ROOM 1 OFF")
-                elif data[2:] == "room2on":
+                """elif data[2:] == "room2on":
                         RoomLight.LED2(1)
                         print("ROOM 2 ON!")
                 elif data[2:] == "room2off":
@@ -41,7 +41,7 @@ while True:
                         print("ROOM 3 ON!")
                 elif data[2:] == "room3off":
                         RoomLight.LED3(0)
-                        print("ROOM 3 OFF")
+                        print("ROOM 3 OFF")"""
         except KeyboardInterrupt:
                 GPIO.cleanup()
                 
