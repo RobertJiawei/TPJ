@@ -31,16 +31,16 @@ while True:
                 elif cmd[10:-1] == ctrCmd[1]:
                         RoomLight.LED1(0)
                         print("ROOM 1 OFF")
-                elif cmd[10:-1] == ctrCmd[3]:
+                elif cmd[10:-1] == ctrCmd[2]:
                         RoomLight.LED2(1)
                         print("ROOM 2 ON!")
-                elif cmd[10:-1] == ctrCmd[4]:
+                elif cmd[10:-1] == ctrCmd[3]:
                         RoomLight.LED2(0)
                         print("ROOM 2 OFF")
-                elif cmd[10:-1] == ctrCmd[5]:
+                elif cmd[10:-1] == ctrCmd[4]:
                         RoomLight.LED3(1)
                         print("ROOM 3 ON!")
-                elif cmd[10:-1] == ctrCmd[6]:
+                elif cmd[10:-1] == ctrCmd[5]:
                         RoomLight.LED3(0)
                         print("ROOM 3 OFF")
         except KeyboardInterrupt:
