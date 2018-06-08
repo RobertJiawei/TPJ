@@ -23,11 +23,12 @@ while True:
         try:
                 #while True:
                 data = tcpCliSock.recv(BUFSIZE)
-                print(data)
-                if str(data) == ctrCmd[0]:
+                cmd = str(data)
+                print(cmd[2:])
+                if cmd[2:] == ctrCmd[0]:
                         RoomLight.LED1(1)
                         print("ROOM 1 ON!")
-                elif str(data) == ctrCmd[1]:
+                elif cmd[2:] == ctrCmd[1]:
                         RoomLight.LED1(0)
                         print("ROOM 1 OFF")
                 """elif data[2:] == "room2on":
