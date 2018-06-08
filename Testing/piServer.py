@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 RoomLight.setup()
 window.setup()
 
-ctrCmd = ['room1on','room1off','room2on','room2off','room3on','room3off', 'windowopen','windowclose']
+ctrCmd = ['1true','1false','2true','2false','3true','3false', 'windowtrue','windowfalse']
 
 HOST = '192.168.43.5'
 PORT = 21565
