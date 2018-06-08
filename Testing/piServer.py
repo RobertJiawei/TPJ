@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 
 RoomLight.setup()
 
-#ctrCmd = ['1false','1true','2false','2true','3false','3true','wfalse','wtrue']
-#ctrCmd = ['1']
+ctrCmd = ['room1on','room1off','room2on','room2off','room3on','room3off']
+
 HOST = '192.168.43.5'
 PORT = 21565
 BUFSIZE = 1024
@@ -23,11 +23,11 @@ while True:
         try:
                 #while True:
                 data = tcpCliSock.recv(BUFSIZE)
-                print(data[2:])
-                if data[2:] == "b'room1on'":
+                print(data)
+                if data == ctrCmd[0]:
                         RoomLight.LED1(1)
                         print("ROOM 1 ON!")
-                elif data[2:] == "b'room1off'":
+                elif data == ctrCmd[1]:
                         RoomLight.LED1(0)
                         print("ROOM 1 OFF")
                 """elif data[2:] == "room2on":
