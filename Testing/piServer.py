@@ -5,7 +5,7 @@ import time
 import RPi.GPIO as GPIO
 
 RoomLight.setup()
-
+window.setup()
 
 ctrCmd = ['room1on','room1off','room2on','room2off','room3on','room3off', 'windowopen','windowclose']
 
