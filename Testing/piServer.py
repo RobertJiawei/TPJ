@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 RoomLight.setup()
 window.setup()
 
-ctrCmd = ['1true','1false','2true','2false','3true','3false', 'windowtrue','windowfalse', 'v', 'vt']
+ctrCmd = ['1true','1false','2true','2false','3true','3false', 'windowtrue','windowfalse']
 
 HOST = '192.168.43.5'
 PORT = 1234
@@ -52,13 +52,7 @@ while True:
                 elif cmd[10:-1] == ctrCmd[7]:
                         window.rightturn()
                         print("WINDOW CLOSING")
-                elif cmd[10:-1] == ctrCmd[8]:
-                        os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1234}' :demux=h264")
-                        print("video")
-                elif cmd[10:-1] == ctrCmd[9]:
-                        print("stop")
-                        tcpSerSock.close()
         except KeyboardInterrupt:
                 GPIO.cleanup()
                 
-#tcpSerSock.close()
+tcpSerSock.close()
