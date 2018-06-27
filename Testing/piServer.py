@@ -1,3 +1,4 @@
+import os
 import RoomLight
 import servotest as window
 from socket import *
@@ -7,10 +8,10 @@ import RPi.GPIO as GPIO
 RoomLight.setup()
 window.setup()
 
-ctrCmd = ['1true','1false','2true','2false','3true','3false', 'windowtrue','windowfalse']
+ctrCmd = ['1true','1false','2true','2false','3true','3false', 'windowtrue','windowfalse', 'v', 'vt']
 
 HOST = '192.168.43.5'
-PORT = 21565
+PORT = 1234
 BUFSIZE = 1024
 ADDR = (HOST,PORT)
 
@@ -51,7 +52,11 @@ while True:
                 elif cmd[10:-1] == ctrCmd[7]:
                         window.rightturn()
                         print("WINDOW CLOSING")
+                elif cmd[10:-1] == ctrCmd[8]:
+                        os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1234}' :demux=h264")
+                elif cmd[10:-1] == ctrCmd[9]:
+                        os.system("^c")
         except KeyboardInterrupt:
                 GPIO.cleanup()
                 
-tcpSerSock.close();
+tcpSerSock.close()
