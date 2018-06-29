@@ -13,7 +13,7 @@ try:
     while True:
         if GPIO.input(senserOut_pin):
             GPIO.output(led_pin, 1)
-            time.sleep(1)
+            time.sleep(0.5)
         else:
             GPIO.output(led_pin, 0)
 
@@ -21,3 +21,13 @@ except KeyboardInterrupt:
     pass
 except:
     GPIO.cleanup()
+
+
+
+
+if GPIO = 1:
+    open camera,
+    if GPIO = 1:
+        time.sleep(10)
+    elif expression:
+        os.system(kill camera)
