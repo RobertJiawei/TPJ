@@ -13,7 +13,7 @@ try:
     while True:
         if GPIO.input(senserOut_pin):
             GPIO.output(led_pin, 1)
-            time.sleep(10)
+            time.sleep(1)
         else:
             GPIO.output(led_pin, 0)
 
