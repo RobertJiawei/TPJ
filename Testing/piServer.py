@@ -57,7 +57,7 @@ while True:
                         os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
                 elif cmd[10:-1] == ctrCmd[9]:
                         print(data)
-                        sys.exit(0)
+                        os.system("\x03")
                         #tcpSerSock.close()
         except KeyboardInterrupt:
                 GPIO.cleanup()
