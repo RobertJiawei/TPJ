@@ -1,12 +1,9 @@
 import os
-import subprocess
 import RoomLight
 import servotest as window
 from socket import *
 import time
 import RPi.GPIO as GPIO
-
-#camera = picamera.PiCamera()
 
 RoomLight.setup()
 window.setup()
@@ -23,14 +20,11 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(10)
 
-p = None
-
 while True:
     print('Waiting for connection')
     tcpCliSock, addr = tcpSerSock.accept()
     print('...connected from :', addr)
     try:
-        # while True:
         data = tcpCliSock.recv(BUFSIZE)
         cmd = str(data)
         print(cmd[10:-1])
@@ -59,14 +53,10 @@ while True:
             window.rightturn()
             print("WINDOW CLOSING")
         elif cmd[10:-1] == ctrCmd[8]:
-            os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
-            """subprocess.Popen(
-                ["raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &"], shell=True)"""
+            os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")    
         elif cmd[10:-1] == ctrCmd[9]:
             print(data)
             os.system("pkill raspivid")
-            # camera.close()
-            # tcpSerSock.close()"""
     except KeyboardInterrupt:
         GPIO.cleanup()
 
