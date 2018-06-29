@@ -59,13 +59,12 @@ while True:
             window.rightturn()
             print("WINDOW CLOSING")
         elif cmd[10:-1] == ctrCmd[8]:
-            # os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
-            p = subprocess.Popen(
-                ["raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &"], shell=True)
-            time.sleep(10)
-            p.terminate()
+            os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
+            """subprocess.Popen(
+                ["raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &"], shell=True)"""
         elif cmd[10:-1] == ctrCmd[9]:
             print(data)
+            os.system("pkill raspivid")
             # camera.close()
             # tcpSerSock.close()"""
     except KeyboardInterrupt:
