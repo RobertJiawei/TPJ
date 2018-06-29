@@ -1,12 +1,13 @@
 import os
-import picamera
+#import picamera
+import subprocess
 import RoomLight
 import servotest as window
 from socket import *
 import time
 import RPi.GPIO as GPIO
 
-camera = picamera.PiCamera()
+#camera = picamera.PiCamera()
 
 RoomLight.setup()
 window.setup()
@@ -56,11 +57,13 @@ while True:
                         window.rightturn()
                         print("WINDOW CLOSING")
                 elif cmd[10:-1] == ctrCmd[8]:
-                        os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
-                elif cmd[10:-1] == ctrCmd[9]:
-                        print(data)
-                        camera.close()
-                        #tcpSerSock.close()
+                        #os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
+                        proc = subprocess.Popen("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
+                        if cmd[10:-1] == ctrCmd[9]:
+                                print(data)
+                                proc.terminate()
+                                #camera.close()
+                                #tcpSerSock.close()
         except KeyboardInterrupt:
                 GPIO.cleanup()
                 
