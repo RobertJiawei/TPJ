@@ -21,13 +21,3 @@ except KeyboardInterrupt:
     pass
 except:
     GPIO.cleanup()
-
-
-
-
-if GPIO = 1:
-    open camera,
-    if GPIO = 1:
-        time.sleep(10)
-    elif expression:
-        os.system(kill camera)
