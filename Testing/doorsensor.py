@@ -15,10 +15,6 @@ while True:
         time.sleep(0.1)
         GPIO.output(buzzer_pin,1)
         time.sleep(0.1)
-        GPIO.output(buzzer_pin,0)
-        time.sleep(0.1)
-        GPIO.output(buzzer_pin,1)
-        time.sleep(0.1)
         while GPIO.input(doorsensor_pin):
             print("door opened")
     else:
