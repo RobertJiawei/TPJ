@@ -6,7 +6,29 @@ import RPi.GPIO as GPIO
 import Doorsensor
 import threading
 
-def mainfunc():
+def doorcheck():
+    while True:
+        if GPIO.input(12):
+            print("Door opened")
+            Doorsensor.buzzeron()
+            while GPIO.input(12):
+                print("Door opened")
+        else:
+            print("Door is closed")
+
+
+RoomLight.setup()
+window.setup()
+Doorsensor.setup()
+
+threads = []
+tdoor = threading.Thread(target=doorcheck)
+threads.append(tdoor)
+
+for t in threads:
+    t.setDaemon(True)
+    t.start()
+
     ctrCmd = ['1true', '1false', '2true', '2false', '3true',
               '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
 
@@ -63,25 +85,3 @@ def mainfunc():
             GPIO.cleanup()
 
     tcpSerSock.close()
-
-
-RoomLight.setup()
-window.setup()
-Doorsensor.setup()
-
-threads = []
-tmain = threading.Thread(target=mainfunc)
-threads.append(tmain)
-
-for t in threads:
-    t.setDaemon(True)
-    t.start()
-
-    while True:
-        if GPIO.input(12):
-            print("Door opened")
-            Doorsensor.buzzeron()
-            while GPIO.input(12):
-                print("Door opened")
-        else:
-            print("Door is closed")
