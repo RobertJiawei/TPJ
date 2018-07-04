@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-doorsensor_pin = 18
+doorsensor_pin = 12
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(doorsensor_pin,GPIO.IN)
