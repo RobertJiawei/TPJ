@@ -3,11 +3,11 @@ import RoomLight
 import Window as window
 from socket import *
 import RPi.GPIO as GPIO
-#import Doorsensor
+import Doorsensor
 
 RoomLight.setup()
 window.setup()
-#Doorsensor.setup()
+Doorsensor.setup()
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
           '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
@@ -25,6 +25,15 @@ while True:
     print('Waiting for connection')
     tcpCliSock, addr = tcpSerSock.accept()
     print('...connected from :', addr)
+
+    if GPIO.input(12):
+        print("Door opened")
+        Doorsensor.buzzeron()
+        while GPIO.input(12):
+            print("Door opened")
+    else:
+        print("Door is closed")
+
     try:
         data = tcpCliSock.recv(BUFSIZE)
         cmd = str(data)
@@ -58,6 +67,7 @@ while True:
         elif cmd[10:-1] == ctrCmd[9]:
             print(data)
             os.system("pkill raspivid")
+
     except KeyboardInterrupt:
         GPIO.cleanup()
 

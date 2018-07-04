@@ -9,19 +9,12 @@ def setup():
     GPIO.setup(doorsensor_pin,GPIO.IN,GPIO.PUD_UP)
     GPIO.setup(buzzer_pin,GPIO.OUT)
 
-    while True:
-        if GPIO.input(doorsensor_pin):
-            print("Door is opened")
-            GPIO.output(buzzer_pin,0)
-            time.sleep(0.1)
-            GPIO.output(buzzer_pin,1)
-            time.sleep(0.1)
-            GPIO.output(buzzer_pin,0)
-            time.sleep(0.1)
-            GPIO.output(buzzer_pin,1)
-            time.sleep(0.1)
-            while GPIO.input(doorsensor_pin):
-                print("door opened")
-        else:
-            GPIO.output(buzzer_pin,1)
-            print("Door is closed")
+def buzzeron():
+        GPIO.output(40,0)
+        time.sleep(0.1)
+        GPIO.output(40,1)
+        time.sleep(0.1)
+        GPIO.output(40,0)
+        time.sleep(0.1)
+        GPIO.output(40,1)
+        time.sleep(0.1)
