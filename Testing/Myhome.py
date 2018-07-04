@@ -7,10 +7,6 @@ import Doorsensor
 import threading
 
 def mainfunc():
-    RoomLight.setup()
-    window.setup()
-    Doorsensor.setup()
-
     ctrCmd = ['1true', '1false', '2true', '2false', '3true',
               '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
 
@@ -75,6 +71,10 @@ def mainfunc():
             print("Door opened")
     else:
         print("Door is closed")
+
+RoomLight.setup()
+window.setup()
+Doorsensor.setup()
 
 
 threads = []
