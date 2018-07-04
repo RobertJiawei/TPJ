@@ -57,7 +57,8 @@ def mainfunc():
                 window.rightturn()
                 print("WINDOW CLOSING")
             elif cmd[10:-1] == ctrCmd[8]:
-                os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
+                os.system(
+                    "raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
             elif cmd[10:-1] == ctrCmd[9]:
                 print(data)
                 os.system("pkill raspivid")
@@ -67,7 +68,6 @@ def mainfunc():
 
     tcpSerSock.close()
 
-def doorcheck():
     if GPIO.input(12):
         print("Door opened")
         Doorsensor.buzzeron()
@@ -76,13 +76,20 @@ def doorcheck():
     else:
         print("Door is closed")
 
+
 threads = []
-tmain = threading.Thread(target = mainfunc)
+tmain = threading.Thread(target=mainfunc)
 threads.append(tmain)
-tdoor = threading.Thread(target = doorcheck)
-threads.append(tdoor)
 
 for t in threads:
     t.setDaemon(True)
     t.start()
 
+    while True:
+        if GPIO.input(12):
+            print("Door opened")
+            Doorsensor.buzzeron()
+            while GPIO.input(12):
+                print("Door opened")
+        else:
+            print("Door is closed")
