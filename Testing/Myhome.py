@@ -2,11 +2,12 @@ import os
 import RoomLight
 import Window as window
 from socket import *
-import time
 import RPi.GPIO as GPIO
+import Doorsensor
 
 RoomLight.setup()
 window.setup()
+Doorsensor.setup()
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
           '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
@@ -53,7 +54,7 @@ while True:
             window.rightturn()
             print("WINDOW CLOSING")
         elif cmd[10:-1] == ctrCmd[8]:
-            os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")    
+            os.system("raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
         elif cmd[10:-1] == ctrCmd[9]:
             print(data)
             os.system("pkill raspivid")

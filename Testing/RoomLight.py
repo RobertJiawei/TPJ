@@ -1,4 +1,3 @@
-from time import ctime
 import RPi.GPIO as GPIO
 
 def setup():
