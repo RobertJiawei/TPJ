@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 
 doorsensor_pin = 12
 
@@ -7,6 +8,7 @@ GPIO.setup(doorsensor_pin,GPIO.IN)
 
 while True:
     if GPIO.input(doorsensor_pin):
-        print("Door is closed")
-    else:
         print("Door is opened")
+    else:
+        print("Door is closed")
+    time.sleep(0.5)
