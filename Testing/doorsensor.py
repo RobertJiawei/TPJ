@@ -7,7 +7,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(doorsensor_pin,GPIO.IN)
 
 while True:
-    if GPIO.input(doorsensor_pin):
+    if not GPIO.input(doorsensor_pin):
         print("Door is opened")
     else:
         print("Door is closed")
