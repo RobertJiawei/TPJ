@@ -4,10 +4,10 @@ import time
 doorsensor_pin = 12
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(doorsensor_pin,GPIO.IN)
+GPIO.setup(doorsensor_pin,GPIO.IN,GPIO.PUD_UP)
 
 while True:
-    if not GPIO.input(doorsensor_pin):
+    if GPIO.input(doorsensor_pin):
         print("Door is opened")
     else:
         print("Door is closed")
