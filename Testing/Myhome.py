@@ -64,18 +64,10 @@ def mainfunc():
 
     tcpSerSock.close()
 
-    if GPIO.input(12):
-        print("Door opened")
-        Doorsensor.buzzeron()
-        while GPIO.input(12):
-            print("Door opened")
-    else:
-        print("Door is closed")
 
 RoomLight.setup()
 window.setup()
 Doorsensor.setup()
-
 
 threads = []
 tmain = threading.Thread(target=mainfunc)
