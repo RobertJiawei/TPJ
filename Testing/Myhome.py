@@ -3,11 +3,11 @@ import RoomLight
 import Window as window
 from socket import *
 import RPi.GPIO as GPIO
-import Doorsensor
+#import Doorsensor
 
 RoomLight.setup()
 window.setup()
-Doorsensor.setup()
+#Doorsensor.setup()
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
           '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
