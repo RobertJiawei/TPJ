@@ -1,6 +1,6 @@
 import os
 import RoomLight
-import servotest as window
+import Window as window
 from socket import *
 import time
 import RPi.GPIO as GPIO
