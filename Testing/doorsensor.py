@@ -16,6 +16,6 @@ while True:
         GPIO.output(buzzer_pin,1)
         time.sleep(0.3)
     else:
-        GPIO.output(buzzer_pin,0)
+        GPIO.output(buzzer_pin,1)
         print("Door is closed")
     time.sleep(0.1)
