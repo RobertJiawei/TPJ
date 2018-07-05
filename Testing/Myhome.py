@@ -25,7 +25,7 @@ Doorsensor.setup()
 Window.setup()
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
-              '3false', 'wtrue', 'wfalse', 'v', 'vt']
+              '3false', 'wtrue', 'wfalse', 'v', 'vt', '1234']
 
 HOST = '192.168.43.5'
 PORT = 1234
