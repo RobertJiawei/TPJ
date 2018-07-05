@@ -1,8 +1,7 @@
 import RPi.GPIO as GPIO
 
-GPIO.cleanup()
 
-"""def setup():
+def setup():
 	GPIO.setmode(GPIO.BOARD)
 	GPIO.setup(12, GPIO.OUT) # set up GPIO 12 as servo motor input
 	global p
@@ -15,4 +14,4 @@ def leftturn():
 
 def rightturn():
 	p.ChangeDutyCycle(12.5)  # turn towards 90 degree
-	print("right")"""
+	print("right")
