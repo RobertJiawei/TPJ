@@ -7,16 +7,29 @@ import Doorsensor
 import threading
 
 def doorcheck():
+    HOST = '192.168.43.5'
+    PORT = 1236
+    BUFSIZE = 1024
+    ADDR = (HOST, PORT)
+
+    tcpSerSock = socket(AF_INET, SOCK_STREAM)
+    tcpSerSock.bind(ADDR)
+    tcpSerSock.listen(10)
+
     while True:
-        if GPIO.input(12):
-            print("Door opened")
-            Doorsensor.buzzeron()
-            tcpCliSock.send(1)
-            while GPIO.input(12):
+        tcpCliSock, addr = tcpSerSock.accept()
+        try:
+            if GPIO.input(12):
                 print("Door opened")
-        else:
-            print("Door is closed")
-            tcpCliSock.send(0)
+                Doorsensor.buzzeron()
+                tcpCliSock.send(1)
+                while GPIO.input(12):
+                    print("Door opened")
+            else:
+                print("Door is closed")
+                tcpCliSock.send(0)
+        except KeyboardInterrupt:
+            tcpSerSock.close()
 
 
 RoomLight.setup()
