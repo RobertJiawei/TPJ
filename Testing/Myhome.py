@@ -71,7 +71,7 @@ for t in threads:
             elif cmd[10:-1] == ctrCmd[5]:
                 RoomLight.LED3(0)
                 print("ROOM 3 OFF")
-            elif cmd[8:-1] == ctrCmd[6]:
+            elif cmd[10:-1] == ctrCmd[6]:
                 Window.leftturn()
                 print("WINDOW OPENING")
             elif cmd[10:-1] == ctrCmd[7]:
