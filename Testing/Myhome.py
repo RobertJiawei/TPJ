@@ -1,6 +1,6 @@
 import os
 import RoomLight
-import Window as window
+import Window
 from socket import *
 import RPi.GPIO as GPIO
 import Doorsensor
@@ -72,10 +72,10 @@ for t in threads:
                 RoomLight.LED3(0)
                 print("ROOM 3 OFF")
             elif cmd[8:-1] == ctrCmd[6]:
-                window.leftturn()
+                Window.leftturn()
                 print("WINDOW OPENING")
             elif cmd[10:-1] == ctrCmd[7]:
-                window.rightturn()
+                Window.rightturn()
                 print("WINDOW CLOSING")
             elif cmd[10:-1] == ctrCmd[8]:
                 os.system(
