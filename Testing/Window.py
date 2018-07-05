@@ -2,9 +2,9 @@ import RPi.GPIO as GPIO
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(12, GPIO.OUT) # set up GPIO 12 as servo motor input
+	GPIO.setup(13, GPIO.OUT) # set up GPIO 12 as servo motor input
 	global p
-	p = GPIO.PWM(12, 50)
+	p = GPIO.PWM(13, 50)
 	p.start(2.5)
 
 def leftturn():
