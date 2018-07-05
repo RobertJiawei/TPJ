@@ -8,8 +8,9 @@ import threading
 import time
 
 
-def doorcheck():
+def doorcheck(Clisock):
     while True:
+        tcpCliSock, addr = Clisock.accept()
         if GPIO.input(12):
             print("Door opened")
             Doorsensor.buzzeron()
@@ -39,7 +40,7 @@ tcpSerSock.bind(ADDR)
 tcpSerSock.listen(10)
 
 threads = []
-tdoor = threading.Thread(target=doorcheck)
+tdoor = threading.Thread(target=doorcheck, args=tcpSerSock)
 threads.append(tdoor)
 
 for t in threads:
