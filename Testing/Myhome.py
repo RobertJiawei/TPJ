@@ -24,23 +24,23 @@ RoomLight.setup()
 window.setup()
 Doorsensor.setup()
 
+ctrCmd = ['1true', '1false', '2true', '2false', '3true',
+              '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
+
+HOST = '192.168.43.5'
+PORT = 1234
+BUFSIZE = 1024
+ADDR = (HOST, PORT)
+
+tcpSerSock = socket(AF_INET, SOCK_STREAM)
+tcpSerSock.bind(ADDR)
+tcpSerSock.listen(10)
+
 threads = []
 tdoor = threading.Thread(target=doorcheck)
 threads.append(tdoor)
 
 for t in threads:
-    ctrCmd = ['1true', '1false', '2true', '2false', '3true',
-              '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
-
-    HOST = '192.168.43.5'
-    PORT = 1234
-    BUFSIZE = 1024
-    ADDR = (HOST, PORT)
-
-    tcpSerSock = socket(AF_INET, SOCK_STREAM)
-    tcpSerSock.bind(ADDR)
-    tcpSerSock.listen(10)
-
     t.setDaemon(True)
     t.start()
 
