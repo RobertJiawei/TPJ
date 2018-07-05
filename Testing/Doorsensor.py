@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 def setup():
-    doorsensor_pin = 12
+    doorsensor_pin = 11
     buzzer_pin = 40
 
     GPIO.setmode(GPIO.BOARD)

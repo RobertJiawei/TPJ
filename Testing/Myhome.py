@@ -10,10 +10,10 @@ import time
 
 def doorcheck():
     while True:
-        if GPIO.input(12):
+        if GPIO.input(11):
             print("Door opened")
             Doorsensor.buzzeron()
-            while GPIO.input(12):
+            while GPIO.input(11):
                 print("Door opened")
         else:
             print("Door is closed")
