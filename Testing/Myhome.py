@@ -17,7 +17,7 @@ def doorcheck():
                 print("Door opened")
         else:
             print("Door is closed")
-    time.sleep(1)
+        time.sleep(1)
 
 
 RoomLight.setup()
