@@ -5,6 +5,7 @@ from socket import *
 import RPi.GPIO as GPIO
 import Doorsensor
 import threading
+import time
 
 
 def doorcheck():
@@ -16,6 +17,7 @@ def doorcheck():
                 print("Door opened")
         else:
             print("Door is closed")
+    time.sleep(1)
 
 
 RoomLight.setup()
