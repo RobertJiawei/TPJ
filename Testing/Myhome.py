@@ -11,10 +11,12 @@ def doorcheck():
         if GPIO.input(12):
             print("Door opened")
             Doorsensor.buzzeron()
+            tcpCliSock.send(1)
             while GPIO.input(12):
                 print("Door opened")
         else:
             print("Door is closed")
+            tcpCliSock.send(0)
 
 
 RoomLight.setup()
