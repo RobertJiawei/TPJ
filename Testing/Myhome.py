@@ -30,7 +30,6 @@ threads.append(tdoor)
 
 for t in threads:
     t.setDaemon(True)
-    t.start()
 
     ctrCmd = ['1true', '1false', '2true', '2false', '3true',
               '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
@@ -43,6 +42,8 @@ for t in threads:
     tcpSerSock = socket(AF_INET, SOCK_STREAM)
     tcpSerSock.bind(ADDR)
     tcpSerSock.listen(10)
+
+    t.start()
 
     while True:
         print('Waiting for connection')
