@@ -29,8 +29,6 @@ tdoor = threading.Thread(target=doorcheck)
 threads.append(tdoor)
 
 for t in threads:
-    t.setDaemon(True)
-
     ctrCmd = ['1true', '1false', '2true', '2false', '3true',
               '3false', 'windowtrue', 'windowfalse', 'v', 'vt']
 
@@ -43,6 +41,7 @@ for t in threads:
     tcpSerSock.bind(ADDR)
     tcpSerSock.listen(10)
 
+    t.setDaemon(True)
     t.start()
 
     while True:
