@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 import Doorsensor
 import threading
 import time
+import Doorlock
 
 
 def doorcheck():
@@ -23,9 +24,10 @@ def doorcheck():
 RoomLight.setup()
 Doorsensor.setup()
 Window.setup()
+Doorlock.setup()
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
-              '3false', 'wtrue', 'wfalse', 'v', 'vt', '1234']
+              '3false', 'wtrue', 'wfalse', 'v', 'vt', 'd']
 
 HOST = '192.168.43.5'
 PORT = 1234
@@ -77,6 +79,9 @@ for t in threads:
             elif cmd[10:-1] == ctrCmd[7]:
                 Window.rightturn()
                 print("WINDOW CLOSING")
+            elif cmd[10:-1] == ctrCmd[10]:
+                Doorlock.opendoor()
+                print("Door can be open now!!!!!!")
             elif cmd[10:-1] == ctrCmd[8]:
                 os.system(
                     "raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")
