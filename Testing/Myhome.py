@@ -21,7 +21,7 @@ def doorcheck():
 
 
 RoomLight.setup()
-window.setup()
+Window.setup()
 Doorsensor.setup()
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
