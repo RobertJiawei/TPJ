@@ -15,12 +15,12 @@ def doorcheck(conndoor, addrdoor):
         if GPIO.input(11):
             print("Door opened")
             Doorsensor.buzzeron()
-            conndoor.send("open")
+            conndoor.send('open')
             while GPIO.input(11):
                 pass
         else:
             print("Door is closed")
-            conndoor.send("close")
+            conndoor.send('close')
         time.sleep(1)
 
 
@@ -28,10 +28,10 @@ def motioncheck(connmotion, motionaddr):
     while True:
         if GPIO.input(13):
             print("Yes")
-            connmotion.send("yes")
+            connmotion.send('yes')
         else:
             print("No")
-            connmotion.send("no")
+            connmotion.send('no')
 
 
 RoomLight.setup()
