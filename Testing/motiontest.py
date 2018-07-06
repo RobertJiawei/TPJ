@@ -1,13 +1,14 @@
-#!/usr/bin/env python
 import RPi.GPIO as GPIO
 import time
 
-led_pin = 3                 
-senserOut_pin = 11                       
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(led_pin, GPIO.OUT)
-GPIO.setup(senserOut_pin, GPIO.IN)     
+def setup():
+    led_pin = 3
+    senserOut_pin = 13
+
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(led_pin, GPIO.OUT)
+    GPIO.setup(senserOut_pin, GPIO.IN)
 
 try:
     while True:
