@@ -7,6 +7,7 @@ import Doorsensor
 import threading
 import time
 import Doorlock
+import motiontest
 
 
 def doorcheck():
@@ -34,6 +35,8 @@ RoomLight.setup()
 Doorsensor.setup()
 Window.setup()
 Doorlock.setup()
+motiontest.setup()
+
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
               '3false', 'wtrue', 'wfalse', 'v', 'vt', 'd']
