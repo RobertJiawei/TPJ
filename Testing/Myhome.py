@@ -10,24 +10,28 @@ import Doorlock
 import motiontest
 
 
-def doorcheck():
+def doorcheck(conndoor):
     while True:
         if GPIO.input(11):
             print("Door opened")
             Doorsensor.buzzeron()
+            conndoor.send(1)
             while GPIO.input(11):
                 pass
         else:
             print("Door is closed")
+            conndoor.send(0)
         time.sleep(1)
 
 
-def motioncheck():
+def motioncheck(connmotion):
     while True:
         if GPIO.input(13):
             print("Yes")
+            connmotion.send(1)
         else:
             print("No")
+            connmotion.send(0)
 
 
 RoomLight.setup()
@@ -49,20 +53,26 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(10)
 
-threads = []
+"""threads = []
 tdoor = threading.Thread(target=doorcheck)
 tmotion = threading.Thread(target=motioncheck)
 threads.append(tdoor)
-threads.append(tmotion)
+threads.append(tmotion)"""
 
-for t in threads:
+"""for t in threads:
     t.setDaemon(True)
-    t.start()
+    t.start()"""
 
 while True:
     print('Waiting for connection')
     tcpCliSock, addr = tcpSerSock.accept()
     print('...connected from :', addr)
+
+    tdoor = threading.Thread(target=doorcheck, args=tcpCliSock)
+    tmotion = threading.Thread(target=motioncheck, args=tcpCliSock)
+
+    tdoor.start()
+    tmotion.start()
 
     try:
         data = tcpCliSock.recv(BUFSIZE)
