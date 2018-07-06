@@ -26,10 +26,8 @@ def motioncheck():
     while True:
         if GPIO.input(13):
             print("Yes")
-            time.sleep(10)
         else:
             print("No")
-            time.sleep(10)
 
 
 RoomLight.setup()
