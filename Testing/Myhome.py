@@ -15,12 +15,12 @@ def doorcheck(conndoor, addrdoor):
         if GPIO.input(11):
             print("Door opened")
             Doorsensor.buzzeron()
-            conndoor.send(1)
+            conndoor.send("open")
             while GPIO.input(11):
                 pass
         else:
             print("Door is closed")
-            conndoor.send(0)
+            conndoor.send("close")
         time.sleep(1)
 
 
@@ -28,10 +28,10 @@ def motioncheck(connmotion, motionaddr):
     while True:
         if GPIO.input(13):
             print("Yes")
-            connmotion.send(1)
+            connmotion.send("yes")
         else:
             print("No")
-            connmotion.send(0)
+            connmotion.send("no")
 
 
 RoomLight.setup()
@@ -75,7 +75,7 @@ while True:
     tmotion.start()
 
     try:
-        data = tcpCliSock.recv(BUFSIZE)
+        data = conn.recv(BUFSIZE)
         cmd = str(data)
         print(cmd[10:-1])
         if cmd[10:-1] == ctrCmd[0]:
