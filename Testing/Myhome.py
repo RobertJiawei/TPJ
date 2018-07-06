@@ -29,6 +29,7 @@ def motioncheck():
             time.sleep(10)
         else:
             print("No")
+            time.sleep(10)
 
 
 RoomLight.setup()
