@@ -5,7 +5,7 @@ def setup():
 	GPIO.setup(12, GPIO.OUT) # set up GPIO 12 as servo motor input
 	global p
 	p = GPIO.PWM(12, 50)
-	p.start(2.5)
+	p.start(12.5)
 
 def leftturn():
 	p.ChangeDutyCycle(7.5)  # turn towards 90 degree
