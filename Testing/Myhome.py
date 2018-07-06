@@ -15,7 +15,7 @@ def doorcheck():
             print("Door opened")
             Doorsensor.buzzeron()
             while GPIO.input(11):
-                print("Door opened")
+                pass
         else:
             print("Door is closed")
         time.sleep(1)
