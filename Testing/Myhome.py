@@ -14,6 +14,7 @@ class doorcheck(threading.Thread):
     def __init__(self):
         super(doorcheck, self).__init__()
         self.door = None
+        self.doorst()
 
     def doorst(self):
         while True:
