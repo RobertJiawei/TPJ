@@ -4,15 +4,15 @@ import Window
 from socket import *
 import RPi.GPIO as GPIO
 import Doorsensor
-from threading import Thread
+import threading
 import time
 import Doorlock
 import motiontest
 
 
-class doorcheck(Thread):
+class doorcheck(threading.Thread):
     def __init__(self):
-        Thread.__init__(self)
+        super(doorcheck, self).__init__()
         self.result = None
         while True:
             if GPIO.input(11):
