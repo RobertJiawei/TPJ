@@ -11,7 +11,7 @@ import motiontest
 
 class doorcheck(Thread):
     def __init__(self):
-        self.result
+        self.result = None
         while True:
             if GPIO.input(11):
                 print("Door opened")
