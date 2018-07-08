@@ -15,12 +15,12 @@ def doorcheck(conndoor, addrdoor):
         if GPIO.input(11):
             print("Door opened")
             Doorsensor.buzzeron()
-            conndoor.send(True.encode())
+            conndoor.send("open".encode('utf-8'))
             while GPIO.input(11):
                 pass
         else:
             print("Door is closed")
-            conndoor.send(0)
+            conndoor.send("close".encode('utf-8'))
         time.sleep(1)
 
 
@@ -28,10 +28,10 @@ def motioncheck(connmotion, motionaddr):
     while True:
         if GPIO.input(13):
             print("Yes")
-            connmotion.send(1)
+            connmotion.send("yes".encode('utf-8'))
         else:
             print("No")
-            connmotion.send(0)
+            connmotion.send("no".encode('utf-8'))
 
 
 RoomLight.setup()
@@ -46,33 +46,35 @@ ctrCmd = ['1true', '1false', '2true', '2false', '3true',
 
 HOST = '192.168.43.5'
 PORT = 1234
-BUFSIZE = 1024
+PORTreturn = 1236
+BUFSIZE = 20
 ADDR = (HOST, PORT)
+ADDRreturn = (HOST, PORTreturn)
 
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(10)
 
-"""threads = []
-tdoor = threading.Thread(target=doorcheck)
-tmotion = threading.Thread(target=motioncheck)
-threads.append(tdoor)
-threads.append(tmotion)"""
+tcpSerSockreturn = socket(AF_INET, SOCK_STREAM)
+tcpSerSockreturn.bind(ADDRreturn)
+tcpSerSockreturn.listen(10)
 
-"""for t in threads:
+connreturn, addrreturn = tcpSerSockreturn.accept()
+
+threads = []
+tdoor = threading.Thread(target=doorcheck, args=(connreturn, addrreturn))
+tmotion = threading.Thread(target=motioncheck, args=(connreturn, addrreturn))
+threads.append(tdoor)
+threads.append(tmotion)
+
+for t in threads:
     t.setDaemon(True)
-    t.start()"""
+    t.start()
 
 while True:
     print('Waiting for connection')
     conn, addr = tcpSerSock.accept()
     print('...connected from :', addr)
-
-    tdoor = threading.Thread(target=doorcheck, args=(conn,addr))
-    tmotion = threading.Thread(target=motioncheck, args=(conn,addr))
-
-    tdoor.start()
-    tmotion.start()
 
     try:
         data = conn.recv(BUFSIZE)
