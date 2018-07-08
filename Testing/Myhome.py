@@ -10,27 +10,17 @@ import Doorlock
 import motiontest
 
 
-class doorcheck(threading.Thread):
-    def __init__(self):
-        super(doorcheck, self).__init__()
-        self.door = None
-        self.doorst()
-
-    def doorst(self):
-        while True:
-            if GPIO.input(11):
-                # print("Door opened")
-                Doorsensor.buzzeron()
-                self.door = True
-                while GPIO.input(11):
-                    pass
-            else:
-                self.door = False
-                # print("Door is closed")
-            time.sleep(1)
-
-    def getdoor(self):
-        return self.door
+def doorcheck():
+    while True:
+        if GPIO.input(11):
+            # print("Door opened")
+            Doorsensor.buzzeron()
+            while GPIO.input(11):
+                pass
+        else:
+            pass
+            # print("Door is closed")
+        time.sleep(1)
 
 
 def motioncheck():
@@ -60,26 +50,21 @@ tcpSerSock.bind(ADDR)
 tcpSerSock.listen(10)
 
 threads = []
-tdoor = doorcheck()
+tdoor = threading.Thread(target=doorcheck)
 # tmotion = threading.Thread(target=motioncheck)
-#threads.append(tdoor)
+threads.append(tdoor)
 # threads.append(tmotion)
 
-tdoor.start()
 
-"""for t in threads:
+for t in threads:
     t.setDaemon(True)
-    t.start()"""
+    t.start()
 
 while True:
     print('Waiting for connection')
     conn, addr = tcpSerSock.accept()
     print('...connected from :', addr)
 
-    readdoor = doorcheck.getdoor()
-
-    if readdoor:
-        print("!!!!!!!!!")
 
     try:
         data = conn.recv(BUFSIZE)
@@ -118,8 +103,6 @@ while True:
         elif cmd[10:-1] == ctrCmd[9]:
             print(data)
             os.system("pkill raspivid")
-        elif door:
-            print("!!!!!!!!!!!!!!!")
 
     except KeyboardInterrupt:
         GPIO.cleanup()
