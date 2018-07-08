@@ -9,8 +9,10 @@ import time
 import Doorlock
 import motiontest
 
+
 class doorcheck(Thread):
     def __init__(self):
+        Thread.__init__(self)
         self.result = None
         while True:
             if GPIO.input(11):
