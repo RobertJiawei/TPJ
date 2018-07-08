@@ -11,14 +11,17 @@ import motiontest
 
 
 def doorcheck():
+    global door
     while True:
         if GPIO.input(11):
-            print("Door opened")
+            #print("Door opened")
             Doorsensor.buzzeron()
+            door = True
             while GPIO.input(11):
                 pass
         else:
-            print("Door is closed")
+            door = False
+            #print("Door is closed")
         time.sleep(1)
 
 
@@ -29,6 +32,8 @@ def motioncheck():
         else:
             print("No")
 
+
+door = None
 
 RoomLight.setup()
 Doorsensor.setup()
@@ -101,6 +106,8 @@ while True:
         elif cmd[10:-1] == ctrCmd[9]:
             print(data)
             os.system("pkill raspivid")
+        elif door:
+            print("!!!!!!!!!!!!!!!")
 
     except KeyboardInterrupt:
         GPIO.cleanup()
