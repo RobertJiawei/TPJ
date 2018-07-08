@@ -94,7 +94,7 @@ HOST1 = '192.168.43.1'
 PORT1 = 8998
 ADDR1 =(HOST1,PORT1)
 
-sock = socket.socket()
+sock = socket(AF_INET, SOCK_STREAM)
 
 for t in threads:
     t.setDaemon(True)
