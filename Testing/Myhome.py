@@ -90,33 +90,19 @@ tdoor = threading.Thread(target=doorcheck)
 threads.append(tdoor)
 # threads.append(tmotion)
 
-HOST1 = '192.168.43.1'
-PORT1 = 8998
-ADDR1 =(HOST1,PORT1)
-
-sock = socket(AF_INET, SOCK_STREAM)
-
 for t in threads:
     t.setDaemon(True)
     t.start()
 
-try:
-    sock.connect(ADDR1)
-    print("wait for connection!")
-    while True:
-        if GPIO.input(11):
-            # print("Door opened")
-            Doorsensor.buzzeron()
-            while GPIO.input(11):
-                sock.sendall("1".encode('utf-8'))
-                pass
-        else:
-            sock.sendall("0".encode('utf-8'))
+while True:
+    if GPIO.input(11):
+        # print("Door opened")
+        Doorsensor.buzzeron()
+        while GPIO.input(11):
             pass
-            # print("Door is closed")
-        time.sleep(1)
-except KeyboardInterrupt:
-    sock.close()
-    pass
+    else:
+        pass
+        # print("Door is closed")
+    time.sleep(1)
 
 tcpSerSock.close()
