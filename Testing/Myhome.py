@@ -96,13 +96,15 @@ for t in threads:
     t.start()
 
 while True:
+    conn, addr = tcpSerSock.accept()
     if GPIO.input(11):
         # print("Door opened")
         Doorsensor.buzzeron()
+        conn.sen("open".encode('utf-8'))
         while GPIO.input(11):
             pass
     else:
-        pass
+        conn.sen("close".encode('utf-8'))
         # print("Door is closed")
     time.sleep(1)
 
