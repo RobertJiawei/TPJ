@@ -63,8 +63,8 @@ tcpSerSockreturn.listen(10)
 connreturn, addrreturn = tcpSerSockreturn.accept()"""
 
 threads = []
-tdoor = doorcheck()
-tmotion = motioncheck()
+tdoor = threading.Thread(target=doorcheck())
+tmotion = threading.Thread(target=motioncheck())
 threads.append(tdoor)
 threads.append(tmotion)
 
