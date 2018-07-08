@@ -75,6 +75,7 @@ tmotion = motioncheck()
 
 tdoor.start()
 tmotion.start()
+tdoor.join()
 
 while True:
     print('Waiting for connection')
