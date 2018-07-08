@@ -102,6 +102,7 @@ for t in threads:
 
 try:
     sock.connect(ADDR1)
+    print("wait for connection!")
     while True:
         if GPIO.input(11):
             # print("Door opened")
