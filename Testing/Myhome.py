@@ -15,7 +15,7 @@ def doorcheck(conndoor, addrdoor):
         if GPIO.input(11):
             print("Door opened")
             Doorsensor.buzzeron()
-            conndoor.send(1)
+            conndoor.send(True.encode())
             while GPIO.input(11):
                 pass
         else:
