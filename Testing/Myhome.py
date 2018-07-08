@@ -9,25 +9,20 @@ import time
 import Doorlock
 import motiontest
 
-class doorcheck(threading.Thread):
-    def __init__(self):
-        super(doorcheck, self).__init__()
-        while True:
-            if GPIO.input(11):
-                print("Door opened")
-                Doorsensor.buzzeron()
-                #conndoor.send("open".encode('utf-8'))
-                self.result = True
-                while GPIO.input(11):
-                    pass
-            else:
-                print("Door is closed")
-                self.result = False
-                #conndoor.send("close".encode('utf-8'))
-            time.sleep(1)
-
-    def get_result(self):
-        return self.result
+def doorcheck():
+    while True:
+        if GPIO.input(11):
+            print("Door opened")
+            Doorsensor.buzzeron()
+            #conndoor.send("open".encode('utf-8'))
+            #self.result = True
+            while GPIO.input(11):
+                pass
+        else:
+            print("Door is closed")
+            #self.result = False
+            #conndoor.send("close".encode('utf-8'))
+        time.sleep(1)
 
 
 def motioncheck():
