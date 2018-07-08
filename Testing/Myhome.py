@@ -10,19 +10,26 @@ import Doorlock
 import motiontest
 
 
-def doorcheck():
-    global door
-    while True:
-        if GPIO.input(11):
-            #print("Door opened")
-            Doorsensor.buzzeron()
-            door = True
-            while GPIO.input(11):
-                pass
-        else:
-            door = False
-            #print("Door is closed")
-        time.sleep(1)
+class doorcheck(threading.Thread):
+    def __init__(self):
+        super(doorcheck, self).__init__()
+        self.door = None
+
+    def doorst(self):
+        while True:
+            if GPIO.input(11):
+                # print("Door opened")
+                Doorsensor.buzzeron()
+                self.door = True
+                while GPIO.input(11):
+                    pass
+            else:
+                self.door = False
+                # print("Door is closed")
+            time.sleep(1)
+
+    def getdoor(self):
+        return self.door
 
 
 def motioncheck():
@@ -33,17 +40,14 @@ def motioncheck():
             print("No")
 
 
-door = None
-
 RoomLight.setup()
 Doorsensor.setup()
 Window.setup()
 Doorlock.setup()
 motiontest.setup()
 
-
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
-              '3false', 'wtrue', 'wfalse', 'v', 'vt', 'd']
+          '3false', 'wtrue', 'wfalse', 'v', 'vt', 'd']
 
 HOST = '192.168.43.5'
 PORT = 1234
@@ -55,22 +59,26 @@ tcpSerSock.bind(ADDR)
 tcpSerSock.listen(10)
 
 threads = []
-tdoor = threading.Thread(target=doorcheck)
-#tmotion = threading.Thread(target=motioncheck)
-threads.append(tdoor)
-#threads.append(tmotion)
+tdoor = doorcheck()
+# tmotion = threading.Thread(target=motioncheck)
+#threads.append(tdoor)
+# threads.append(tmotion)
 
-for t in threads:
+tdoor.start()
+
+"""for t in threads:
     t.setDaemon(True)
-    t.start()
+    t.start()"""
 
 while True:
     print('Waiting for connection')
     conn, addr = tcpSerSock.accept()
     print('...connected from :', addr)
 
-    if door:
-        print("!!!!!!!!!!!!!!!")
+    readdoor = doorcheck.getdoor()
+
+    if readdoor:
+        print("!!!!!!!!!")
 
     try:
         data = conn.recv(BUFSIZE)
