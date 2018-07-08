@@ -69,6 +69,9 @@ while True:
     conn, addr = tcpSerSock.accept()
     print('...connected from :', addr)
 
+    if door:
+        print("!!!!!!!!!!!!!!!")
+
     try:
         data = conn.recv(BUFSIZE)
         cmd = str(data)
