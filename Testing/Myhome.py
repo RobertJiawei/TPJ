@@ -90,7 +90,7 @@ tdoor = threading.Thread(target=doorcheck)
 threads.append(tdoor)
 # threads.append(tmotion)
 
-HOST1 = '192.168.43.145'
+HOST1 = '192.168.43.1'
 PORT1 = 8998
 ADDR1 =(HOST1,PORT1)
 
