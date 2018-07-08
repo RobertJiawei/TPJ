@@ -4,24 +4,30 @@ import Window
 from socket import *
 import RPi.GPIO as GPIO
 import Doorsensor
-from threading import Thread
+import threading
 import time
 import Doorlock
 import motiontest
 
+class doorcheck(threading.Thread):
+    def __init__(self):
+        super(doorcheck, self).__init__()
+        while True:
+            if GPIO.input(11):
+                print("Door opened")
+                Doorsensor.buzzeron()
+                #conndoor.send("open".encode('utf-8'))
+                self.result = True
+                while GPIO.input(11):
+                    pass
+            else:
+                print("Door is closed")
+                self.result = False
+                #conndoor.send("close".encode('utf-8'))
+            time.sleep(1)
 
-def doorcheck():
-    while True:
-        if GPIO.input(11):
-            print("Door opened")
-            Doorsensor.buzzeron()
-            #conndoor.send("open".encode('utf-8'))
-            while GPIO.input(11):
-                pass
-        else:
-            print("Door is closed")
-            #conndoor.send("close".encode('utf-8'))
-        time.sleep(1)
+    def get_result(self):
+        return self.result
 
 
 def motioncheck():
@@ -64,10 +70,12 @@ connreturn, addrreturn = tcpSerSockreturn.accept()"""
 threads = []
 tdoor = doorcheck()
 tmotion = motioncheck()
+threads.append(tdoor)
+threads.append(tmotion)
 
-tdoor.start()
-tmotion.start()
-
+for t in threads:
+    t.start()
+    t.join()
 
 while True:
     print('Waiting for connection')
