@@ -56,9 +56,9 @@ tcpSerSock.listen(10)
 
 threads = []
 tdoor = threading.Thread(target=doorcheck)
-tmotion = threading.Thread(target=motioncheck)
+#tmotion = threading.Thread(target=motioncheck)
 threads.append(tdoor)
-threads.append(tmotion)
+#threads.append(tmotion)
 
 for t in threads:
     t.setDaemon(True)
