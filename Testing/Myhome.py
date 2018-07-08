@@ -4,34 +4,40 @@ import Window
 from socket import *
 import RPi.GPIO as GPIO
 import Doorsensor
-import threading
+from threading import Thread
 import time
 import Doorlock
 import motiontest
 
+class doorcheck(Thread):
+    def __init__(self):
+        self.result
+        while True:
+            if GPIO.input(11):
+                print("Door opened")
+                Doorsensor.buzzeron()
+                #conndoor.send("open".encode('utf-8'))
+                self.result = True
+                while GPIO.input(11):
+                    pass
+            else:
+                print("Door is closed")
+                self.result = False
+                #conndoor.send("close".encode('utf-8'))
+            time.sleep(1)
 
-def doorcheck(conndoor, addrdoor):
-    while True:
-        if GPIO.input(11):
-            print("Door opened")
-            Doorsensor.buzzeron()
-            conndoor.send("open".encode('utf-8'))
-            while GPIO.input(11):
-                pass
-        else:
-            print("Door is closed")
-            conndoor.send("close".encode('utf-8'))
-        time.sleep(1)
+    def get_result(self):
+        return self.result
 
 
-def motioncheck(connmotion, motionaddr):
+def motioncheck():
     while True:
         if GPIO.input(13):
             print("Yes")
-            connmotion.send("yes".encode('utf-8'))
+            #connmotion.send("yes".encode('utf-8'))
         else:
             print("No")
-            connmotion.send("no".encode('utf-8'))
+            #connmotion.send("no".encode('utf-8'))
 
 
 RoomLight.setup()
@@ -46,35 +52,36 @@ ctrCmd = ['1true', '1false', '2true', '2false', '3true',
 
 HOST = '192.168.43.5'
 PORT = 1234
-PORTreturn = 1236
+#PORTreturn = 1236
 BUFSIZE = 20
 ADDR = (HOST, PORT)
-ADDRreturn = (HOST, PORTreturn)
+#ADDRreturn = (HOST, PORTreturn)
 
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(10)
 
-tcpSerSockreturn = socket(AF_INET, SOCK_STREAM)
+"""tcpSerSockreturn = socket(AF_INET, SOCK_STREAM)
 tcpSerSockreturn.bind(ADDRreturn)
 tcpSerSockreturn.listen(10)
 
-connreturn, addrreturn = tcpSerSockreturn.accept()
+connreturn, addrreturn = tcpSerSockreturn.accept()"""
 
 threads = []
-tdoor = threading.Thread(target=doorcheck, args=(connreturn, addrreturn))
-tmotion = threading.Thread(target=motioncheck, args=(connreturn, addrreturn))
-threads.append(tdoor)
-threads.append(tmotion)
+tdoor = doorcheck()
+tmotion = motioncheck()
 
-for t in threads:
-    t.setDaemon(True)
-    t.start()
+tdoor.start()
+tmotion.start()
+tdoor.join()
+tmotion.join()
 
 while True:
     print('Waiting for connection')
     conn, addr = tcpSerSock.accept()
     print('...connected from :', addr)
+
+    door = tdoor.get_result()
 
     try:
         data = conn.recv(BUFSIZE)
@@ -113,6 +120,10 @@ while True:
         elif cmd[10:-1] == ctrCmd[9]:
             print(data)
             os.system("pkill raspivid")
+        elif door:
+            conn.send("open".encode('utf-8'))
+        elif not door:
+            conn.send("close".encode('utf-8'))
 
     except KeyboardInterrupt:
         GPIO.cleanup()
