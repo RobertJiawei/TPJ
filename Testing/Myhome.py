@@ -11,7 +11,6 @@ import motiontest
 
 
 def doorcheck():
-    #conn, addr = tcpSerSock.accept()
     while True:
         print('Waiting for connection')
         conn, addr = tcpSerSock.accept()
@@ -96,9 +95,12 @@ for t in threads:
     t.start()
 
 while True:
+    conn, addr = tcpSerSock.accept()
     if GPIO.input(11):
         # print("Door opened")
         Doorsensor.buzzeron()
+        conn.send("yes".encode())
+        print("door open")
         while GPIO.input(11):
             pass
     else:
