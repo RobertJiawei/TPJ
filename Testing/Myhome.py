@@ -24,6 +24,7 @@ def doorcheck():
             conn.send("close".encode())
             pass
             # print("Door is closed")
+        print("door!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         time.sleep(1)
 
 
