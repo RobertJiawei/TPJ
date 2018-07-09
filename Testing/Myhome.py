@@ -30,9 +30,9 @@ def doorcheck():
 
 def motioncheck():
     while True:
-        print('Waiting for connection')
+        #print('Waiting for connection')
         #conn, addr = tcpSerSock.accept()
-        print('...connected from :', addr)
+        #print('...connected from :', addr)
 
         try:
             data = conn.recv(BUFSIZE)
