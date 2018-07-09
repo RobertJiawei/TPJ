@@ -99,12 +99,14 @@ conn, addr = tcpSerSock.accept()
 threads = []
 tdoor = threading.Thread(target=doorcheck)
 tmotion = threading.Thread(target=motioncheck)
-threads.append(tdoor)
-threads.append(tmotion)
+tdoor.start()
+tmotion.start()
+tdoor.join()
+tmotion.join()
 
-for t in threads:
+"""for t in threads:
     t.setDaemon(True)
-    t.start()
+    t.start()"""
 
 while True:
     conn, addr = tcpSerSock.accept()
