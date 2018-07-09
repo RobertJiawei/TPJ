@@ -12,6 +12,7 @@ import motiontest
 
 def doorcheck():
     while True:
+        conn.recv(BUFSIZE)
         #conn, addr = tcpSerSock.accept()
         if GPIO.input(11):
             # print("Door opened")
