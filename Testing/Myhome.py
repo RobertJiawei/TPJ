@@ -92,21 +92,19 @@ ADDR = (HOST, PORT)
 
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
-tcpSerSock.listen(10)
+tcpSerSock.listen(5)
 
 conn, addr = tcpSerSock.accept()
 
 threads = []
 tdoor = threading.Thread(target=doorcheck)
 tmotion = threading.Thread(target=motioncheck)
-tdoor.start()
-tmotion.start()
-tdoor.join()
-tmotion.join()
+threads.append(tdoor)
+threads.append(tmotion)
 
-"""for t in threads:
+for t in threads:
     t.setDaemon(True)
-    t.start()"""
+    t.start()
 
 while True:
     conn, addr = tcpSerSock.accept()
