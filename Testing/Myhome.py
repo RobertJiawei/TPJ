@@ -11,9 +11,10 @@ import motiontest
 
 
 def doorcheck():
+    conn, addr = tcpSerSock.accept()
     while True:
         print('Waiting for connection')
-        conn, addr = tcpSerSock.accept()
+        #conn, addr = tcpSerSock.accept()
         print('...connected from :', addr)
 
         try:
