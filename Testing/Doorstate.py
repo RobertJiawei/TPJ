@@ -13,6 +13,7 @@ tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
 while True:
+    print("........waiting for connection")
     conn, addr = tcpSerSock.accept()
     if GPIO.input(11):
         print("Door opened")
