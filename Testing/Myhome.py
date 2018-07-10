@@ -4,7 +4,6 @@ import Window
 from socket import *
 import RPi.GPIO as GPIO
 import Doorsensor
-import threading
 import time
 import Doorlock
 import motiontest
