@@ -109,5 +109,4 @@ while True:
     except KeyboardInterrupt:
         GPIO.cleanup()
 
-
 tcpSerSock.close()
