@@ -34,6 +34,7 @@ def motioncheck():
         else:
             print("No")
 
+
 RoomLight.setup()
 Doorsensor.setup()
 Window.setup()
@@ -53,7 +54,7 @@ tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
 
-threads = []
+"""threads = []
 tdoor = threading.Thread(target=doorcheck)
 #tmotion = threading.Thread(target=motioncheck)
 threads.append(tdoor)
@@ -61,7 +62,7 @@ threads.append(tdoor)
 
 for t in threads:
     t.setDaemon(True)
-    t.start()
+    t.start()"""
 
 while True:
     print('Waiting for connection')
