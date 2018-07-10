@@ -3,6 +3,9 @@ import RPi.GPIO as GPIO
 import Doorsensor
 import time
 
+
+Doorsensor.setup()
+
 HOST = '192.168.43.5'
 PORT = 1236
 BUFSIZE = 1024
@@ -16,6 +19,7 @@ while True:
     print("waiting for connection")
     conn, addr = tcpSerSock.accept()
     print("..... connected .....")
+
     if GPIO.input(11):
         print("Door opened")
         Doorsensor.buzzeron()
@@ -27,5 +31,7 @@ while True:
         conn.send("close".encode())
         pass
         print("Door is closed")
+
     print("door!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
     time.sleep(1)

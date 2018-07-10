@@ -9,7 +9,7 @@ import Doorlock
 import motiontest
 
 
-def doorcheck():
+"""def doorcheck():
     while True:
         if GPIO.input(11):
             print("Door opened")
@@ -31,7 +31,7 @@ def motioncheck():
         if GPIO.input(13):
             print("Yes")
         else:
-            print("No")
+            print("No")"""
 
 
 RoomLight.setup()
@@ -109,4 +109,3 @@ while True:
     except KeyboardInterrupt:
         GPIO.cleanup()
 
-tcpSerSock.close()
