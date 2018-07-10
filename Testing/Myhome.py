@@ -35,7 +35,7 @@ def motioncheck():
 
 
 RoomLight.setup()
-Doorsensor.setup()
+#Doorsensor.setup()
 Window.setup()
 Doorlock.setup()
 motiontest.setup()
