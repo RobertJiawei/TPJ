@@ -15,6 +15,7 @@ tcpSerSock.listen(5)
 while True:
     print("waiting for connection")
     conn, addr = tcpSerSock.accept()
+    print("..... connected .....")
     if GPIO.input(11):
         print("Door opened")
         Doorsensor.buzzeron()
