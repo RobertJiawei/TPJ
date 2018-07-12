@@ -3,39 +3,11 @@ import RoomLight
 import Window
 from socket import *
 import RPi.GPIO as GPIO
-import Doorsensor
-import time
 import Doorlock
 import motiontest
 
 
-"""def doorcheck():
-    while True:
-        if GPIO.input(11):
-            print("Door opened")
-            Doorsensor.buzzeron()
-            conn.send("open".encode())
-            print("door open")
-            while GPIO.input(11):
-                pass
-        else:
-            conn.send("close".encode())
-            pass
-            print("Door is closed")
-        print("door!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        time.sleep(1)
-
-
-def motioncheck():
-    while True:
-        if GPIO.input(13):
-            print("Yes")
-        else:
-            print("No")"""
-
-
 RoomLight.setup()
-#Doorsensor.setup()
 Window.setup()
 Doorlock.setup()
 motiontest.setup()
@@ -52,16 +24,6 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
-
-"""threads = []
-tdoor = threading.Thread(target=doorcheck)
-#tmotion = threading.Thread(target=motioncheck)
-threads.append(tdoor)
-#threads.append(tmotion)
-
-for t in threads:
-    t.setDaemon(True)
-    t.start()"""
 
 while True:
     print('Waiting for connection')
