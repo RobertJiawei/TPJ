@@ -3,9 +3,9 @@ import time
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(15, GPIO.OUT)
+    GPIO.setup(8, GPIO.OUT)
 
 def opendoor():
-    GPIO.output(15, 1)
+    GPIO.output(8, 1)
     time.sleep(10)
-    GPIO.output(15,0)
+    GPIO.output(8,0)
