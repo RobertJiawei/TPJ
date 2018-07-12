@@ -23,12 +23,12 @@ while True:
     if GPIO.input(11):
         print("Door opened")
         Doorsensor.buzzeron()
-        conn.send("open".encode())
+        conn.send("open".encode('utf-8'))
         print("door open")
         while GPIO.input(11):
             pass
     else:
-        conn.send("close".encode())
+        conn.send("close".encode('utf-8'))
         pass
         print("Door is closed")
 
