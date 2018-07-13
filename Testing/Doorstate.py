@@ -4,34 +4,35 @@ import Doorsensor
 import time
 
 
-Doorsensor.setup()
+def setup():
+    Doorsensor.setup()
 
-HOST = '192.168.43.5'
-PORT = 1236
-BUFSIZE = 1024
-ADDR = (HOST, PORT)
+    HOST = '192.168.43.5'
+    PORT = 1236
+    BUFSIZE = 1024
+    ADDR = (HOST, PORT)
 
-tcpSerSock = socket(AF_INET, SOCK_STREAM)
-tcpSerSock.bind(ADDR)
-tcpSerSock.listen(5)
+    tcpSerSock = socket(AF_INET, SOCK_STREAM)
+    tcpSerSock.bind(ADDR)
+    tcpSerSock.listen(5)
 
-while True:
-    print("waiting for connection")
-    conn, addr = tcpSerSock.accept()
-    print("..... connected .....")
+    while True:
+        print("waiting for connection")
+        conn, addr = tcpSerSock.accept()
+        print("..... connected .....")
 
-    if GPIO.input(11):
-        print("Door opened")
-        Doorsensor.buzzeron()
-        conn.send("open".encode('utf-8'))
-        print("door open")
-        while GPIO.input(11):
+        if GPIO.input(11):
+            print("Door opened")
+            Doorsensor.buzzeron()
+            conn.send("open".encode('utf-8'))
+            print("door open")
+            while GPIO.input(11):
+                pass
+        else:
+            conn.send("close".encode('utf-8'))
             pass
-    else:
-        conn.send("close".encode('utf-8'))
-        pass
-        print("Door is closed")
+            print("Door is closed")
 
-    print("door!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("door!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
-    time.sleep(1)
+        time.sleep(1)

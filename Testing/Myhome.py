@@ -5,6 +5,8 @@ from socket import *
 import RPi.GPIO as GPIO
 import Doorlock
 import motiontest
+import threading
+import Doorstate
 
 
 RoomLight.setup()
@@ -24,6 +26,8 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
+tdoor = threading.Thread(target=Doorstate.setup())
+tdoor.start()
 
 while True:
     print('Waiting for connection')
