@@ -25,10 +25,10 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)  # Build a Socket based on TCP connect
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
-tdoor = threading.Thread(target=Doorstate.setup())
+"""tdoor = threading.Thread(target=Doorstate.setup())
 tmotion = threading.Thread(target=motiontest.setup())
 tdoor.start()
-tmotion.start()
+tmotion.start()"""
 
 while True:
     print('Waiting for connection')
