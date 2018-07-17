@@ -9,7 +9,6 @@ def setup():
 
     HOST = '192.168.43.5'
     PORT = 1236
-    BUFSIZE = 1024
     ADDR = (HOST, PORT)
 
     tcpSerSock = socket(AF_INET, SOCK_STREAM)

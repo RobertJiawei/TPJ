@@ -12,7 +12,6 @@ import Doorstate
 RoomLight.setup()
 Window.setup()
 Doorlock.setup()
-motiontest.setup()
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
           '3false', 'wtrue', 'wfalse', 'v', 'vt', 'd']
@@ -22,12 +21,14 @@ PORT = 1234
 BUFSIZE = 1024
 ADDR = (HOST, PORT)
 
-tcpSerSock = socket(AF_INET, SOCK_STREAM)
+tcpSerSock = socket(AF_INET, SOCK_STREAM)  # Build a Socket based on TCP connection
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
 tdoor = threading.Thread(target=Doorstate.setup())
+tmotion = threading.Thread(target=motiontest.setup())
 tdoor.start()
+tmotion.start()
 
 while True:
     print('Waiting for connection')
