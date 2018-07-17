@@ -4,9 +4,6 @@ import Window
 from socket import *
 import RPi.GPIO as GPIO
 import Doorlock
-import motiontest
-import threading
-import Doorstate
 
 
 RoomLight.setup()
