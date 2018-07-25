@@ -21,11 +21,11 @@ while True:
     if GPIO.input(11):                       # check GPIO#11 logic level. if it is high, the door is opened
         print("Door opened")
         DoorSensor.buzzeron()                # buzzer will make two 'bip' sound when door is opened
-        conn.send("open".encode('utf-8'))    # send message "open" back to client
+        conn.send("1".encode('utf-8'))       # send message "1" back to client
         print("Door opened")
         while GPIO.input(11):                # when door is open, the buzzer only sound one time
             pass                             # the door status will stay open unless the logic level become low
     else:                                    # if it is low, the door is closed
-        conn.send("close".encode('utf-8'))   # send message "close" back to client
+        conn.send("0".encode('utf-8'))   # send message "0" back to client
         print("Door closed")
     time.sleep(1)                            # the time between each check is 1 second
