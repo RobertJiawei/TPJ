@@ -3,12 +3,12 @@ import RoomLight          # import RoomLight.py as a library
 import Window             # import Window.py as a library
 from socket import *      # import every function in socket library
 import RPi.GPIO as GPIO   # import Raspberry Pi GPIO library as GPIO
-import Doorlock           # import Doorlock.py as a library
+import DoorLock           # import Doorlock.py as a library
 
 
 RoomLight.setup()         # run RoomLight setup function
 Window.setup()            # run Window setup function
-Doorlock.setup()          # run Doorlock setup function
+DoorLock.setup()          # run Doorlock setup function
 
 ctrCmd = ['1true', '1false', '2true', '2false', '3true',
           '3false', 'wtrue', 'wfalse', 'v', 'vt', 'd']      # store the commands sent from MyHome application
@@ -58,7 +58,7 @@ while True:
             print("WINDOW CLOSING")
         elif cmd[10:-1] == ctrCmd[10]:
             print("Door can be open now!!!!!!")
-            Doorlock.opendoor()
+            DoorLock.opendoor()
         elif cmd[10:-1] == ctrCmd[8]:
             os.system(
                 "raspivid -o - -t 0 -hf -w 800 -h 400 -fps 24 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:1235}' :demux=h264 &")  # start the camera and stream to the destination at port 1235

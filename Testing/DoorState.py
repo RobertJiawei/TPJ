@@ -1,10 +1,10 @@
 from socket import *       # import every function in socket library
 import RPi.GPIO as GPIO    # import Raspberry Pi GPIO library as GPIO
-import Doorsensor          # import Doorsensor.py as a library
+import DoorSensor          # import Doorsensor.py as a library
 import time                # import time library
 
 
-Doorsensor.setup()         # Run Doorsensor setup function
+DoorSensor.setup()         # Run Doorsensor setup function
 
 HOST = '192.168.43.5'
 PORT = 1236
@@ -21,7 +21,7 @@ while True:
 
     if GPIO.input(11):                       # Check GPIO#11 logic level. if it is high, the door is opened
         print("Door opened")
-        Doorsensor.buzzeron()                # Buzzer will make two 'bip' sound when door is opened
+        DoorSensor.buzzeron()                # Buzzer will make two 'bip' sound when door is opened
         conn.send("open".encode('utf-8'))    # Send message "open" back to client
         print("Door opened")
         while GPIO.input(11):                # When door is open, the buzzer only sound one time
