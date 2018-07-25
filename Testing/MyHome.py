@@ -5,7 +5,6 @@ from socket import *      # import every function in socket library
 import RPi.GPIO as GPIO   # import Raspberry Pi GPIO library as GPIO
 import DoorLock           # import Doorlock.py as a library
 
-
 RoomLight.setup()         # run RoomLight setup function
 Window.setup()            # run Window setup function
 DoorLock.setup()          # run Doorlock setup function
@@ -22,14 +21,13 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)  # Build a Socket based on TCP connect
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)                       # Server start to listen up to 4 client request
 
-
 while True:
     print('Waiting for connection')
-    conn, addr = tcpSerSock.accept()      # Accept the request from client and build connection
+    conn, addr = tcpSerSock.accept()      # accept the request from client and build connection
     print('...connected from :', addr)
 
     try:
-        data = conn.recv(BUFSIZE)        # Receive and data send from client and check the command within the while loop
+        data = conn.recv(BUFSIZE)         # receive and data send from client and check the command within the while loop
         cmd = str(data)
         print(cmd[10:-1])
         if cmd[10:-1] == ctrCmd[0]:
@@ -67,5 +65,4 @@ while True:
             os.system("pkill raspivid")  # stop camera streaming
 
     except KeyboardInterrupt:
-        GPIO.cleanup()   # Initiate all GPIO
-
+        GPIO.cleanup()   # initiate all GPIO
