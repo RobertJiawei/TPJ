@@ -2,17 +2,14 @@ import RPi.GPIO as GPIO
 import time
 
 def setup():
-    doorsensor_pin = 11
-    buzzer_pin = 40
-
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(doorsensor_pin,GPIO.IN,GPIO.PUD_UP)
-    GPIO.setup(buzzer_pin,GPIO.OUT)
+    GPIO.setup(11,GPIO.IN,GPIO.PUD_UP) # for door sensor input
+    GPIO.setup(40,GPIO.OUT) # for buzzer control
 
 def buzzeron():
-        GPIO.output(40,0)
+        GPIO.output(40,0) # turn off the buzzer 
         time.sleep(0.1)
-        GPIO.output(40,1)
+        GPIO.output(40,1) # turn on the buzzer 
         time.sleep(0.1)
         GPIO.output(40,0)
         time.sleep(0.1)
