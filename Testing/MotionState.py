@@ -19,9 +19,11 @@ tcpSerSock.listen(5)
 while True:
     conn, addr = tcpSerSock.accept()
     if GPIO.input(senserOut_pin):
+        GPIO.output(led_pin, 1)
         print("Yes")
         conn.send("Yes".encode())
     else:
+        GPIO.output(led_pin, 0)
         print("No")
         conn.send("No".encode())
 
