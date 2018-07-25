@@ -3,30 +3,29 @@ import RPi.GPIO as GPIO    # import Raspberry Pi GPIO library as GPIO
 import DoorSensor          # import Doorsensor.py as a library
 import time                # import time library
 
-
-DoorSensor.setup()         # Run Doorsensor setup function
+DoorSensor.setup()         # run Doorsensor setup function
 
 HOST = '192.168.43.5'
 PORT = 1236
-ADDR = (HOST, PORT)        # Setup socket server information (IP address, port number and size of the package)
+ADDR = (HOST, PORT)        # set up socket server information (IP address, port number and size of the package)
 
-tcpSerSock = socket(AF_INET, SOCK_STREAM)    # Build a Socket based on TCP connection
+tcpSerSock = socket(AF_INET, SOCK_STREAM)    # build a Socket based on TCP connection
 tcpSerSock.bind(ADDR)
-tcpSerSock.listen(5)                         # Server start to listen up to 4 client request
+tcpSerSock.listen(5)                         # server start to listen up to 4 client request
 
 while True:
     print("waiting for connection")
-    conn, addr = tcpSerSock.accept()         # Accept the request from client and build connection
+    conn, addr = tcpSerSock.accept()         # accept the request from client and build connection
     print("..... connected .....")
 
-    if GPIO.input(11):                       # Check GPIO#11 logic level. if it is high, the door is opened
+    if GPIO.input(11):                       # check GPIO#11 logic level. if it is high, the door is opened
         print("Door opened")
-        DoorSensor.buzzeron()                # Buzzer will make two 'bip' sound when door is opened
-        conn.send("open".encode('utf-8'))    # Send message "open" back to client
+        DoorSensor.buzzeron()                # buzzer will make two 'bip' sound when door is opened
+        conn.send("open".encode('utf-8'))    # send message "open" back to client
         print("Door opened")
-        while GPIO.input(11):                # When door is open, the buzzer only sound one time
-            pass                             # The door status will stay open unless the logic level become low
-    else:                                    # If it is low, the door is closed
-        conn.send("close".encode('utf-8'))   # Send message "close" back to client
+        while GPIO.input(11):                # when door is open, the buzzer only sound one time
+            pass                             # the door status will stay open unless the logic level become low
+    else:                                    # if it is low, the door is closed
+        conn.send("close".encode('utf-8'))   # send message "close" back to client
         print("Door closed")
-    time.sleep(1)                            # The time between each check is 1 second
+    time.sleep(1)                            # the time between each check is 1 second
