@@ -1,7 +1,7 @@
-from socket import *
-import RPi.GPIO as GPIO
+from socket import *       # import every function in socket library
+import RPi.GPIO as GPIO    # import Raspberry Pi GPIO library as GPIO
 
-led_pin = 3
+led_pin = 37               # Setup on board pin#37 as LED output pin
 senserOut_pin = 13
 
 GPIO.setmode(GPIO.BOARD)
