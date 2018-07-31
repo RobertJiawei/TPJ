@@ -23,11 +23,11 @@ while True:
     conn, addr = tcpSerSock.accept()      # receive data from MyHome application 
     if GPIO.input(senserOut_pin):         # sensor is triggered
         GPIO.output(led_pin, 1)           # turn on the LED on the door
-        print("Yes")
+        # print("Yes")
         conn.send("1".encode())           # send "1" back to MyHome application
         RoomLight.LED4(1)                 # If someone is near the door, the motion light will be on
     else:                                 # sensor is not triggered
         GPIO.output(led_pin, 0)           # turn off the LED
-        print("No")
+        # print("No")
         conn.send("0".encode())           # send "0" back to MyHome
         RoomLight.LED4(0)                 # If nobody is near the door, the motion light will be off
