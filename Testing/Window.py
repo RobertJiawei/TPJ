@@ -11,9 +11,9 @@ def setup():                  # set up on-board pin 12
 
 def leftturn():               # turn the server motor to 90 degree
     p.ChangeDutyCycle(7.5) 
-    # print("left")
+    print("left")
 
 
 def rightturn():              # turn the server motor to 180 degree
     p.ChangeDutyCycle(12.5) 
-    # print("right")
+    print("right")
