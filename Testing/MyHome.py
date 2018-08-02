@@ -50,10 +50,10 @@ while True:
             #print("ROOM 3 OFF")
         elif cmd[10:-1] == ctrCmd[6]:
             Window.leftturn()
-            print("WINDOW OPENING")
+            #print("WINDOW OPENING")
         elif cmd[10:-1] == ctrCmd[7]:
             Window.rightturn()
-            print("WINDOW CLOSING")
+            #print("WINDOW CLOSING")
         elif cmd[10:-1] == ctrCmd[10]:
             #print("Door can be open now!!!!!!")
             DoorLock.opendoor()
