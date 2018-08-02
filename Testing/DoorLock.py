@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO  # import Raspberry Pi GPIO library as GPIO
 import time  # import time library
-import threading
 
 
 def setup():  # set up on-board pin 8
@@ -8,14 +7,7 @@ def setup():  # set up on-board pin 8
     GPIO.setup(8, GPIO.OUT)  # for door lock control; set on-board pin 8 as an output
 
 
-def door():
+def opendoor():  # unlock the door then lock the door in 10s
     GPIO.output(8, 1)  # set on-board pin 8 high to unlock the door
     time.sleep(5)
     GPIO.output(8, 0)  # set on-board pin 8 low to lock the door
-
-
-def opendoor():  # unlock the door then lock the door in 10s
-    threading.Thread(target=door()).start()
-    #GPIO.output(8, 1)  # set on-board pin 8 high to unlock the door
-    #time.sleep(5)
-    #GPIO.output(8, 0)  # set on-board pin 8 low to lock the door
