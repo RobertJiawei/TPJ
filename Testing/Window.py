@@ -6,7 +6,7 @@ def setup():                  # set up on-board pin 12
     GPIO.setup(32, GPIO.OUT)  # set up on-board 12 as servo motor input
     global p
     p = GPIO.PWM(32, 50)      # set up Global p as PWM output and set frequency as 50Hz
-    # p.start(12.5)             # start PWM output and set initial length at 12.5 milliseconds
+    p.start(12.5)             # start PWM output and set initial length at 12.5 milliseconds
 
 
 def leftturn():               # turn the server motor to 90 degree
